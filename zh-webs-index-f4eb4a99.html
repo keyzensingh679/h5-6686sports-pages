@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日常查询与延伸阅读 · hth.com 介绍页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fde7d6 0%, #f8d5b0 50%, #f4c69a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.2rem;
+            line-height: 1.6;
+            color: #2e241e;
+        }
+
+        .wrapper {
+            max-width: 960px;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.75);
+            backdrop-filter: blur(4px);
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 12px 28px rgba(120, 70, 40, 0.12);
+            padding: 2.2rem 2rem 2.8rem;
+            transition: all 0.2s ease;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.8rem; }
+            .wrapper { padding: 1.6rem 1rem 2rem; border-radius: 32px; }
+        }
+
+        /* ----- hero ----- */
+        .hero {
+            text-align: center;
+            margin-bottom: 2.8rem;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #3f2a1c;
+            background: linear-gradient(to right, #7a4e34, #b0764a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #5a4232;
+            max-width: 600px;
+            margin: 0 auto;
+            border-bottom: 1px dashed #d9bea8;
+            padding-bottom: 0.5rem;
+        }
+
+        /* ----- cards / sections ----- */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: #fffcf8;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 4px 12px rgba(140, 90, 50, 0.08);
+            transition: box-shadow 0.2s, transform 0.15s;
+            border: 1px solid #f3e4d8;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(120, 70, 40, 0.10);
+            transform: translateY(-2px);
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: #5e3c28;
+            border-left: 5px solid #e1b692;
+            padding-left: 1rem;
+        }
+
+        .card p, .card li {
+            color: #3f3229;
+            font-size: 0.98rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .card ul li {
+            padding: 0.35rem 0 0.35rem 1.6rem;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%23b0764a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat;
+            background-size: 1rem;
+        }
+
+        .card .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .card .faq-item strong {
+            display: block;
+            font-weight: 500;
+            color: #4d3322;
+            margin-bottom: 0.15rem;
+        }
+
+        .card .faq-item p {
+            margin-left: 0.2rem;
+            font-size: 0.96rem;
+        }
+
+        /* 场景描述 — 带一点叙述感 */
+        .scene-note {
+            background: #f7efe7;
+            border-radius: 24px;
+            padding: 1.5rem 2rem;
+            margin: 1.2rem 0 1.8rem;
+            font-style: normal;
+            color: #3f2d1f;
+            border-left: 6px solid #dbb594;
+        }
+
+        .scene-note p {
+            max-width: 700px;
+        }
+
+        /* 链接样式 — 圆角按钮感 */
+        .btn-link {
+            display: inline-block;
+            background: #dfc4ae;
+            color: #2f1f14;
+            padding: 0.4rem 1.1rem;
+            border-radius: 40px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.15s;
+            box-shadow: 0 2px 6px rgba(120, 70, 40, 0.08);
+            font-size: 0.95rem;
+            border: 1px solid #f0ddd0;
+        }
+
+        .btn-link:hover {
+            background: #dbb99a;
+            box-shadow: 0 4px 12px rgba(160, 100, 60, 0.18);
+            transform: translateY(-1px);
+        }
+
+        .btn-link:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+
+        .text-link {
+            color: #7a4f32;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+
+        .text-link:hover {
+            color: #a86f47;
+            text-decoration-thickness: 2px;
+        }
+
+        /* 底部区域 */
+        .footer-links {
+            margin-top: 2.8rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #ebd9cb;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            color: #4c3b2e;
+        }
+
+        .footer-links a {
+            color: #4c3b2e;
+            text-decoration: none;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            background: #f4e7dc;
+            transition: background 0.15s;
+        }
+
+        .footer-links a:hover {
+            background: #e6d2c0;
+        }
+
+        .footer-links .small-note {
+            opacity: 0.7;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .card { padding: 1.3rem 1rem; }
+            .scene-note { padding: 1.2rem 1rem; }
+            .footer-links { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!-- hero -->
+    <div class="hero">
+        <h1>日常查询 · 对照 · 延伸</h1>
+        <p>一个围绕真实信息查找、内容比对与扩展阅读的落脚点</p>
+    </div>
+
+    <!-- 场景 / 叙述感 区块 -->
+    <div class="scene-note">
+        <p>有时候只是需要一个地方，可以安静地查一组数据、读一段说明，或者顺着一个词走得更远一点。<br>
+        不用着急，不用刻意，随手翻翻也许就有新的关联。</p>
+    </div>
+
+    <!-- 卡片区：优势 + 说明 合并在两个卡片中 -->
+    <div class="card-grid">
+        <div class="card">
+            <h2>对照与参考</h2>
+            <p>不论是核实一个表述，还是对比不同来源的信息，有一个稳定的参照总让人更踏实。<br>
+            在 <a href="https://zh-webs-hth.com" class="text-link">hth.com</a> 上可以找到一些经过整理的条目、常见问题以及相对克制的说明，适合边看边想。</p>
+            <ul>
+                <li>日常查询 —— 不绕弯，从问题直接到段落</li>
+                <li>内容对照 —— 把相关表述放在一起，方便自己判断</li>
+                <li>延伸阅读 —— 链向更多背景，但保留选择权</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>几个常见场景</h2>
+            <p>比如你在写一份材料，需要确认某个说法是否常见；或者在整理笔记，想看看别人如何组织类似的描述。<br>
+            又或者只是偶然看到一个不熟悉的词，想顺着线索多了解几句——这时候一个结构清晰的页面会省去很多来回切换的时间。</p>
+            <p style="margin-top: 0.6rem;">这种过程不一定需要很多修饰，准确和流畅比什么都重要。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="card" style="margin-top: 0.4rem;">
+        <h2>FAQ 摘要 · 一些常被问到的</h2>
+        <div class="faq-item">
+            <strong>这里的资料偏向哪一类？</strong>
+            <p>偏实用和日常：包括常见概念说明、对照列表、简要背景，尽量不做过度延伸。</p>
+        </div>
+        <div class="faq-item">
+            <strong>可以自由引用或转发吗？</strong>
+            <p>页面内容本身是开放阅读的，引用时注明出处就好。不鼓励断章取义或夸大表述。</p>
+        </div>
+        <div class="faq-item">
+            <strong>是否会频繁更新？</strong>
+            <p>根据实际需要补充和调整，不会为了更新而更新。页面质量比频次重要。</p>
+        </div>
+        <div style="margin-top: 0.8rem; text-align: right;">
+            <a href="https://zh-webs-hth.com" class="btn-link">hth.com</a>
+        </div>
+    </div>
+
+    <!-- 底部链接区域 -->
+    <div class="footer-links">
+        <div>
+            <a href="https://zh-webs-hth.com">hth.com</a> · <span class="small-note">日常查询·对照·延伸</span>
+        </div>
+        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+            <a href="#">查词</a>
+            <a href="#">对照表</a>
+            <a href="#">说明页</a>
+            <a href="#">更多</a>
+        </div>
+        <div class="small-note">—— 结构清晰，内容自然 ——</div>
+    </div>
+</div>
+</body>
+</html>
